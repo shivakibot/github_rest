@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'gitRepository.dart';
+part of 'schema_repository.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,18 +14,18 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-GitRepository _$GitRepositoryFromJson(Map<String, dynamic> json) {
-  return _GitRepository.fromJson(json);
+SchemeRepository _$SchemeRepositoryFromJson(Map<String, dynamic> json) {
+  return _SchemeRepository.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GitRepository {
+mixin _$SchemeRepository {
   @JsonKey(name: 'name')
   String get name => throw _privateConstructorUsedError;
   @JsonKey(name: 'avatar_url')
-  String get ownerIconUrl => throw _privateConstructorUsedError;
+  String? get ownerIconUrl => throw _privateConstructorUsedError;
   @JsonKey(name: 'language')
-  String get language => throw _privateConstructorUsedError;
+  String? get language => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'watchers_count')
@@ -37,20 +37,20 @@ mixin _$GitRepository {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GitRepositoryCopyWith<GitRepository> get copyWith =>
+  $SchemeRepositoryCopyWith<SchemeRepository> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GitRepositoryCopyWith<$Res> {
-  factory $GitRepositoryCopyWith(
-          GitRepository value, $Res Function(GitRepository) then) =
-      _$GitRepositoryCopyWithImpl<$Res, GitRepository>;
+abstract class $SchemeRepositoryCopyWith<$Res> {
+  factory $SchemeRepositoryCopyWith(
+          SchemeRepository value, $Res Function(SchemeRepository) then) =
+      _$SchemeRepositoryCopyWithImpl<$Res, SchemeRepository>;
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'avatar_url') String ownerIconUrl,
-      @JsonKey(name: 'language') String language,
+      @JsonKey(name: 'avatar_url') String? ownerIconUrl,
+      @JsonKey(name: 'language') String? language,
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       @JsonKey(name: 'forks_count') int forksCount,
@@ -58,9 +58,9 @@ abstract class $GitRepositoryCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GitRepositoryCopyWithImpl<$Res, $Val extends GitRepository>
-    implements $GitRepositoryCopyWith<$Res> {
-  _$GitRepositoryCopyWithImpl(this._value, this._then);
+class _$SchemeRepositoryCopyWithImpl<$Res, $Val extends SchemeRepository>
+    implements $SchemeRepositoryCopyWith<$Res> {
+  _$SchemeRepositoryCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -71,8 +71,8 @@ class _$GitRepositoryCopyWithImpl<$Res, $Val extends GitRepository>
   @override
   $Res call({
     Object? name = null,
-    Object? ownerIconUrl = null,
-    Object? language = null,
+    Object? ownerIconUrl = freezed,
+    Object? language = freezed,
     Object? stargazersCount = null,
     Object? watchersCount = null,
     Object? forksCount = null,
@@ -83,14 +83,14 @@ class _$GitRepositoryCopyWithImpl<$Res, $Val extends GitRepository>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerIconUrl: null == ownerIconUrl
+      ownerIconUrl: freezed == ownerIconUrl
           ? _value.ownerIconUrl
           : ownerIconUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
@@ -112,17 +112,17 @@ class _$GitRepositoryCopyWithImpl<$Res, $Val extends GitRepository>
 }
 
 /// @nodoc
-abstract class _$$_GitRepositoryCopyWith<$Res>
-    implements $GitRepositoryCopyWith<$Res> {
-  factory _$$_GitRepositoryCopyWith(
-          _$_GitRepository value, $Res Function(_$_GitRepository) then) =
-      __$$_GitRepositoryCopyWithImpl<$Res>;
+abstract class _$$_SchemeRepositoryCopyWith<$Res>
+    implements $SchemeRepositoryCopyWith<$Res> {
+  factory _$$_SchemeRepositoryCopyWith(
+          _$_SchemeRepository value, $Res Function(_$_SchemeRepository) then) =
+      __$$_SchemeRepositoryCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
       {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'avatar_url') String ownerIconUrl,
-      @JsonKey(name: 'language') String language,
+      @JsonKey(name: 'avatar_url') String? ownerIconUrl,
+      @JsonKey(name: 'language') String? language,
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       @JsonKey(name: 'forks_count') int forksCount,
@@ -130,37 +130,37 @@ abstract class _$$_GitRepositoryCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GitRepositoryCopyWithImpl<$Res>
-    extends _$GitRepositoryCopyWithImpl<$Res, _$_GitRepository>
-    implements _$$_GitRepositoryCopyWith<$Res> {
-  __$$_GitRepositoryCopyWithImpl(
-      _$_GitRepository _value, $Res Function(_$_GitRepository) _then)
+class __$$_SchemeRepositoryCopyWithImpl<$Res>
+    extends _$SchemeRepositoryCopyWithImpl<$Res, _$_SchemeRepository>
+    implements _$$_SchemeRepositoryCopyWith<$Res> {
+  __$$_SchemeRepositoryCopyWithImpl(
+      _$_SchemeRepository _value, $Res Function(_$_SchemeRepository) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? name = null,
-    Object? ownerIconUrl = null,
-    Object? language = null,
+    Object? ownerIconUrl = freezed,
+    Object? language = freezed,
     Object? stargazersCount = null,
     Object? watchersCount = null,
     Object? forksCount = null,
     Object? issuesCount = null,
   }) {
-    return _then(_$_GitRepository(
+    return _then(_$_SchemeRepository(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerIconUrl: null == ownerIconUrl
+      ownerIconUrl: freezed == ownerIconUrl
           ? _value.ownerIconUrl
           : ownerIconUrl // ignore: cast_nullable_to_non_nullable
-              as String,
-      language: null == language
+              as String?,
+      language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
@@ -183,28 +183,28 @@ class __$$_GitRepositoryCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GitRepository implements _GitRepository {
-  const _$_GitRepository(
-      {@JsonKey(name: 'name') this.name = '',
-      @JsonKey(name: 'avatar_url') this.ownerIconUrl = '',
-      @JsonKey(name: 'language') this.language = '',
-      @JsonKey(name: 'stargazers_count') this.stargazersCount = 0,
-      @JsonKey(name: 'watchers_count') this.watchersCount = 0,
-      @JsonKey(name: 'forks_count') this.forksCount = 0,
-      @JsonKey(name: 'open_issues_count') this.issuesCount = 0});
+class _$_SchemeRepository implements _SchemeRepository {
+  const _$_SchemeRepository(
+      {@JsonKey(name: 'name') required this.name,
+      @JsonKey(name: 'avatar_url') required this.ownerIconUrl,
+      @JsonKey(name: 'language') required this.language,
+      @JsonKey(name: 'stargazers_count') required this.stargazersCount,
+      @JsonKey(name: 'watchers_count') required this.watchersCount,
+      @JsonKey(name: 'forks_count') required this.forksCount,
+      @JsonKey(name: 'open_issues_count') required this.issuesCount});
 
-  factory _$_GitRepository.fromJson(Map<String, dynamic> json) =>
-      _$$_GitRepositoryFromJson(json);
+  factory _$_SchemeRepository.fromJson(Map<String, dynamic> json) =>
+      _$$_SchemeRepositoryFromJson(json);
 
   @override
   @JsonKey(name: 'name')
   final String name;
   @override
   @JsonKey(name: 'avatar_url')
-  final String ownerIconUrl;
+  final String? ownerIconUrl;
   @override
   @JsonKey(name: 'language')
-  final String language;
+  final String? language;
   @override
   @JsonKey(name: 'stargazers_count')
   final int stargazersCount;
@@ -220,14 +220,14 @@ class _$_GitRepository implements _GitRepository {
 
   @override
   String toString() {
-    return 'GitRepository(name: $name, ownerIconUrl: $ownerIconUrl, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, issuesCount: $issuesCount)';
+    return 'SchemeRepository(name: $name, ownerIconUrl: $ownerIconUrl, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, issuesCount: $issuesCount)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GitRepository &&
+            other is _$_SchemeRepository &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.ownerIconUrl, ownerIconUrl) ||
                 other.ownerIconUrl == ownerIconUrl) &&
@@ -251,40 +251,40 @@ class _$_GitRepository implements _GitRepository {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GitRepositoryCopyWith<_$_GitRepository> get copyWith =>
-      __$$_GitRepositoryCopyWithImpl<_$_GitRepository>(this, _$identity);
+  _$$_SchemeRepositoryCopyWith<_$_SchemeRepository> get copyWith =>
+      __$$_SchemeRepositoryCopyWithImpl<_$_SchemeRepository>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GitRepositoryToJson(
+    return _$$_SchemeRepositoryToJson(
       this,
     );
   }
 }
 
-abstract class _GitRepository implements GitRepository {
-  const factory _GitRepository(
-          {@JsonKey(name: 'name') final String name,
-          @JsonKey(name: 'avatar_url') final String ownerIconUrl,
-          @JsonKey(name: 'language') final String language,
-          @JsonKey(name: 'stargazers_count') final int stargazersCount,
-          @JsonKey(name: 'watchers_count') final int watchersCount,
-          @JsonKey(name: 'forks_count') final int forksCount,
-          @JsonKey(name: 'open_issues_count') final int issuesCount}) =
-      _$_GitRepository;
+abstract class _SchemeRepository implements SchemeRepository {
+  const factory _SchemeRepository(
+          {@JsonKey(name: 'name') required final String name,
+          @JsonKey(name: 'avatar_url') required final String? ownerIconUrl,
+          @JsonKey(name: 'language') required final String? language,
+          @JsonKey(name: 'stargazers_count') required final int stargazersCount,
+          @JsonKey(name: 'watchers_count') required final int watchersCount,
+          @JsonKey(name: 'forks_count') required final int forksCount,
+          @JsonKey(name: 'open_issues_count') required final int issuesCount}) =
+      _$_SchemeRepository;
 
-  factory _GitRepository.fromJson(Map<String, dynamic> json) =
-      _$_GitRepository.fromJson;
+  factory _SchemeRepository.fromJson(Map<String, dynamic> json) =
+      _$_SchemeRepository.fromJson;
 
   @override
   @JsonKey(name: 'name')
   String get name;
   @override
   @JsonKey(name: 'avatar_url')
-  String get ownerIconUrl;
+  String? get ownerIconUrl;
   @override
   @JsonKey(name: 'language')
-  String get language;
+  String? get language;
   @override
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount;
@@ -299,6 +299,6 @@ abstract class _GitRepository implements GitRepository {
   int get issuesCount;
   @override
   @JsonKey(ignore: true)
-  _$$_GitRepositoryCopyWith<_$_GitRepository> get copyWith =>
+  _$$_SchemeRepositoryCopyWith<_$_SchemeRepository> get copyWith =>
       throw _privateConstructorUsedError;
 }

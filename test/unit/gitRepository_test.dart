@@ -5,7 +5,7 @@ void main(){
   group(const GitRepository().toString(), () {
     test('model init', () {
       GitRepository repo01 = const GitRepository();
-      expect(repo01.title, '');
+      expect(repo01.name, '');
       expect(repo01.ownerIconUrl, '');
       expect(repo01.language, '');
       expect(repo01.stargazersCount, 0);

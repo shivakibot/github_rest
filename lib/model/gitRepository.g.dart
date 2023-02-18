@@ -8,22 +8,22 @@ part of 'gitRepository.dart';
 
 _$_GitRepository _$$_GitRepositoryFromJson(Map<String, dynamic> json) =>
     _$_GitRepository(
-      title: json['title'] as String? ?? '',
-      ownerIconUrl: json['ownerIconUrl'] as String? ?? '',
+      name: json['name'] as String? ?? '',
+      ownerIconUrl: json['avatar_url'] as String? ?? '',
       language: json['language'] as String? ?? '',
-      stargazersCount: json['stargazersCount'] as int? ?? 0,
-      watchersCount: json['watchersCount'] as int? ?? 0,
-      forksCount: json['forksCount'] as int? ?? 0,
-      issuesCount: json['issuesCount'] as int? ?? 0,
+      stargazersCount: json['stargazers_count'] as int? ?? 0,
+      watchersCount: json['watchers_count'] as int? ?? 0,
+      forksCount: json['forks_count'] as int? ?? 0,
+      issuesCount: json['open_issues_count'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_GitRepositoryToJson(_$_GitRepository instance) =>
     <String, dynamic>{
-      'title': instance.title,
-      'ownerIconUrl': instance.ownerIconUrl,
+      'name': instance.name,
+      'avatar_url': instance.ownerIconUrl,
       'language': instance.language,
-      'stargazersCount': instance.stargazersCount,
-      'watchersCount': instance.watchersCount,
-      'forksCount': instance.forksCount,
-      'issuesCount': instance.issuesCount,
+      'stargazers_count': instance.stargazersCount,
+      'watchers_count': instance.watchersCount,
+      'forks_count': instance.forksCount,
+      'open_issues_count': instance.issuesCount,
     };

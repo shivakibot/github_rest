@@ -42,10 +42,12 @@ dependencies:
   flutter_riverpod: ^2.1.1
   slang:
   slang_flutter:
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  mockito:
   integration_test:
     sdk: flutter
 
