@@ -42,17 +42,16 @@ void main() {
       expect(res.incompleteResults, false);
       expect(res.items, []);
     });
-    // API仕様（schema)通りの動作であることを確認し、中身のデータは精査しない
+    // API仕様通りの動作(perPage 及び page option)を確認し、中身のデータは精査しない
     test('normally search page 1 and perPage 10', () async {
-      final res = await _execAllowFail(globalRepo, str01, first);
-      debugPrint(res.items.toString());
-      expect(res.items.length, 10);
-    });
-    // API仕様（schema)通りの動作であることを確認し、中身のデータは精査しない
-    test('normally search page 2 and perPage 10', () async {
-      final res = await _execAllowFail(globalRepo, str01, seconds);
-      debugPrint(res.items.toString());
-      expect(res.items.length, 10);
+      final res01 = await _execAllowFail(globalRepo, str01, first);
+      final res02 = await _execAllowFail(globalRepo, str01, seconds);
+      debugPrint(res01.items.toString());
+      debugPrint(res02.items.toString());
+      expect(res01.items.length, 10);
+      expect(res02.items.length, 10);
+      bool notMatch = res01.items[0].name != res02.items[0].name;
+      expect(notMatch, true);
     });
     // mock で internalError を再現し、throwされることを確認する
     test('abnormally InternalError', () async {
