@@ -14,17 +14,17 @@ import 'github_rest_test.mocks.dart';
 /// テストケースが通らなくなった場合、API仕様が変更された可能性がある為、再精査すること。
 /// 参照:[https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories]
 void main() {
-  final testRepo = GithubRest(isTest: true);
-  final globalRepo = GithubRest();
   final mockRepo = MockGithubRest();
   const String str01 = 'github_rest';
   const String str02 = 'not found';
   const int first = 1;
   const int seconds = 2;
-  group(testRepo.toString(), () {
+  group(GithubRest().runtimeType, () {
     // API仕様（schema)通りのフォーマットかどうかを確認する
     test('normally search my repo', () async {
-      final res = await _execAllowFail(testRepo, str01, first);
+      final repo = GithubRest(isTest: true);
+      final res = await _execAllowFail(repo, str01, first);
+      debugPrint(res.items.toString());
       expect(res.totalCount, 1);
       expect(res.incompleteResults, false);
       expect(res.items[0].name, str01);
@@ -37,15 +37,18 @@ void main() {
     });
     // API仕様（schema)通りのフォーマットかどうかを確認する
     test('normally search result 0', () async {
-      final res = await _execAllowFail(testRepo, str02, first);
+      final repo = GithubRest(isTest: true);
+      final res = await _execAllowFail(repo, str02, first);
+      debugPrint(res.items.toString());
       expect(res.totalCount, 0);
       expect(res.incompleteResults, false);
       expect(res.items, []);
     });
     // API仕様通りの動作(perPage 及び page option)を確認し、中身のデータは精査しない
     test('normally search page 1 and perPage 10', () async {
-      final res01 = await _execAllowFail(globalRepo, str01, first);
-      final res02 = await _execAllowFail(globalRepo, str01, seconds);
+      final repo = GithubRest();
+      final res01 = await _execAllowFail(repo, str01, first);
+      final res02 = await _execAllowFail(repo, str01, seconds);
       debugPrint(res01.items.toString());
       debugPrint(res02.items.toString());
       expect(res01.items.length, 10);
@@ -59,7 +62,8 @@ void main() {
       try {
         await mockRepo.execSearchRepository(str01, first);
         fail('');
-      } on InternalError {
+      } on InternalError catch (e){
+        debugPrint(e.cause);
         return;
       } catch (e) {
         /// 到達しないが一応
@@ -72,7 +76,8 @@ void main() {
       try {
         await mockRepo.execSearchRepository(str01,first);
         fail('');
-      } on GithubServerError {
+      } on GithubServerError catch (e){
+        expect(e.cause, '500');
         return;
       } catch (e) {
         /// 到達しないが一応

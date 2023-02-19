@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:github_rest/error//internalError.dart';
 import 'package:http/http.dart' as http;
 import 'package:github_rest/error/githubServerError.dart';
@@ -53,13 +54,15 @@ class GithubRest {
   /// テスト用リポジトリが検索できるよう検索条件を追加する。
   Future<http.Response> _requestGet(String str, int page) async {
     if (testMode) {
-      return await http.get(Uri.parse(
-        '$searchGithubRepositoryUrl$str$optionMyRepo$opSort$opOrder$opPerPage$opPage$page',
-      ));
+      final requestInMyRepo =
+          '$searchGithubRepositoryUrl$str$optionMyRepo$opSort$opOrder$opPerPage$opPage$page';
+      debugPrint(requestInMyRepo);
+      return await http.get(Uri.parse(requestInMyRepo));
     } else {
-      return await http.get(Uri.parse(
-        '$searchGithubRepositoryUrl$str$opSort$opOrder$opPerPage$opPage$page',
-      ));
+      final request =
+          '$searchGithubRepositoryUrl$str$opSort$opOrder$opPerPage$opPage$page';
+      debugPrint(request);
+      return await http.get(Uri.parse(request));
     }
   }
 
