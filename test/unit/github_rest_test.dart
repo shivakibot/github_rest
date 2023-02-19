@@ -68,7 +68,7 @@ void main() {
     });
     // mock で API server error を再現し、throwされることを確認する
     test('abnormally GithubServerError', () async {
-      when(mockRepo.execSearchRepository(str01, first)).thenThrow(GithubServerError());
+      when(mockRepo.execSearchRepository(str01, first)).thenThrow(GithubServerError('500'));
       try {
         await mockRepo.execSearchRepository(str01,first);
         fail('');
@@ -87,7 +87,7 @@ Future<SchemeSearchRepositories> _execAllowFail(
   try {
     return repo.execSearchRepository(str, page);
   } on GithubServerError {
-    fail(GithubServerError().toString());
+    fail(GithubServerError('500').toString());
   } catch (e) {
     fail('${e.runtimeType}');
   }

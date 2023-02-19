@@ -42,8 +42,10 @@ class GithubRest {
       _checkStatusCode(res);
       final json = jsonDecode(res.body);
       return SchemeSearchRepositories.fromJson(json);
-    } catch (e) {
-      throw InternalError();
+    } on GithubServerError {
+      rethrow;
+    } catch (e, s) {
+      throw InternalError(e: e, s: s);
     }
   }
 
@@ -64,7 +66,7 @@ class GithubRest {
   void _checkStatusCode(http.Response res) {
     /// 200 以外のケースはエラーハンドリング対応とする
     if (res.statusCode != 200) {
-      throw GithubServerError();
+      throw GithubServerError('${res.statusCode}');
     }
   }
 }
