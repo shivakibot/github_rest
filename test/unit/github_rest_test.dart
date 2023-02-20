@@ -12,6 +12,8 @@ import 'github_rest_test.mocks.dart';
 
 /// Github Rest API の 仕様に則る。<br>
 /// テストケースが通らなくなった場合、API仕様が変更された可能性がある為、再精査すること。
+/// また、仕様変更により更新された場合、参照リンクも更新すること。
+/// API version: 2022-11-28
 /// 参照:[https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories]
 void main() {
   final mockRepo = MockGithubRest();

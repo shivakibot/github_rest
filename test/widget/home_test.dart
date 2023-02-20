@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:github_rest/main.dart';
+import 'package:github_rest/view/home.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('widget Test Home', (WidgetTester tester) async {
     await tester.pumpWidget(const MaterialApp(
-      home: MyApp(),
+      home: Home(),
     ));
     await _widgetTest(tester);
   });
@@ -17,15 +16,17 @@ void main() {
 // }
 
 Future<void> _widgetTest(WidgetTester tester) async{
-  // Verify that our counter starts at 0.
-  expect(find.text('0'), findsOneWidget);
-  expect(find.text('1'), findsNothing);
-
-  // Tap the '+' icon and trigger a frame.
-  await tester.tap(find.byIcon(Icons.add));
+  //drawer
+  Finder home = find.byKey(const ValueKey('home'));
+  final ScaffoldState state = tester.firstState(home);
+  Finder drawerHeader = find.byKey(const ValueKey('drawer header'));
+  Finder settingTheme = find.byKey(const ValueKey('setting theme'));
+  Finder etc = find.byKey(const ValueKey('etc'));
+  // open drawer
+  expect(home, findsOneWidget);
+  state.openDrawer();
   await tester.pump();
-
-  // Verify that our counter has incremented.
-  expect(find.text('0'), findsNothing);
-  expect(find.text('1'), findsOneWidget);
+  expect(drawerHeader, findsOneWidget);
+  expect(settingTheme, findsOneWidget);
+  expect(etc, findsOneWidget);
 }

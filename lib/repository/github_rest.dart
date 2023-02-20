@@ -42,6 +42,7 @@ class GithubRest {
       final res = await _requestGet(str, page);
       _checkStatusCode(res);
       final json = jsonDecode(res.body);
+      debugPrint('response body :\n$json');
       return SchemeSearchRepositories.fromJson(json);
     } on GithubServerError {
       rethrow;
