@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../model/schema_repository.dart';
+import '../model/schema_owner.dart';
 
-const String name = 'test';
+const String fullName = 'test';
 const String? ownerIconUrl = null;
 const String? language = null;
 const int stargazersCount = 0;
@@ -9,13 +10,14 @@ const int watchersCount = 1;
 const int forksCount = 2;
 const int issuesCount = 3;
 const SchemeRepository repo = SchemeRepository(
-    name: name,
-    ownerIconUrl: ownerIconUrl,
+    fullName: fullName,
+    owner: SchemeOwner(avatarUrl: ''),
     language: language,
     stargazersCount: stargazersCount,
     watchersCount: watchersCount,
     forksCount: forksCount,
-    issuesCount: issuesCount);
+    issuesCount: issuesCount
+);
 
 class DetailBottomSheet extends StatelessWidget {
   const DetailBottomSheet({super.key});
@@ -30,12 +32,11 @@ class DetailBottomSheet extends StatelessWidget {
           child: Column(
             children: [
               ListTile(
-                leading: repo.ownerIconUrl != null
-                    ? Text(repo.ownerIconUrl ?? '')
-                    : const CircleAvatar(
+                /// TODO networkImage avatarUrl
+                leading: const CircleAvatar(
                   child: Text('O'),
                 ),
-                title: Text(repo.name),
+                title: Text(repo.fullName),
               ),
               ListTile(
                 leading: const Text('Languages'),

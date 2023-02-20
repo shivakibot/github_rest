@@ -3,7 +3,8 @@ import 'package:github_rest/model/schema_repository.dart';
 part 'schema_search_repositories.freezed.dart';
 part 'schema_search_repositories.g.dart';
 
-/// github Rest API の Response Parser
+/// github Rest API
+/// search-repositories Response
 /// Response schema は以下のAPI仕様に準拠。
 /// 参照:[https://docs.github.com/ja/rest/search?apiVersion=2022-11-28#search-repositories]
 @freezed

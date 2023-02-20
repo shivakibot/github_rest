@@ -8,9 +8,9 @@ part of 'schema_repository.dart';
 
 _$_SchemeRepository _$$_SchemeRepositoryFromJson(Map<String, dynamic> json) =>
     _$_SchemeRepository(
-      name: json['name'] as String,
-      ownerIconUrl: json['avatar_url'] as String?,
+      fullName: json['full_name'] as String,
       language: json['language'] as String?,
+      owner: SchemeOwner.fromJson(json['owner'] as Map<String, dynamic>),
       stargazersCount: json['stargazers_count'] as int,
       watchersCount: json['watchers_count'] as int,
       forksCount: json['forks_count'] as int,
@@ -19,9 +19,9 @@ _$_SchemeRepository _$$_SchemeRepositoryFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_SchemeRepositoryToJson(_$_SchemeRepository instance) =>
     <String, dynamic>{
-      'name': instance.name,
-      'avatar_url': instance.ownerIconUrl,
+      'full_name': instance.fullName,
       'language': instance.language,
+      'owner': instance.owner,
       'stargazers_count': instance.stargazersCount,
       'watchers_count': instance.watchersCount,
       'forks_count': instance.forksCount,

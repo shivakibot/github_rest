@@ -29,8 +29,8 @@ void main() {
       debugPrint(res.items.toString());
       expect(res.totalCount, 1);
       expect(res.incompleteResults, false);
-      expect(res.items[0].name, str01);
-      expect(res.items[0].ownerIconUrl, null);
+      expect(res.items[0].fullName, 'shivakibot/$str01');
+      expect(res.items[0].owner.avatarUrl, 'https://avatars.githubusercontent.com/u/54189261?v=4');
       expect(res.items[0].language, 'Dart');
       expect(res.items[0].stargazersCount, 0);
       expect(res.items[0].watchersCount, 0);
@@ -55,7 +55,7 @@ void main() {
       debugPrint(res02.items.toString());
       expect(res01.items.length, 10);
       expect(res02.items.length, 10);
-      bool notMatch = res01.items[0].name != res02.items[0].name;
+      bool notMatch = res01.items[0].fullName != res02.items[0].fullName;
       expect(notMatch, true);
     });
     // mock で internalError を再現し、throwされることを確認する

@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
+import '../model/schema_owner.dart';
 import '../model/schema_repository.dart';
 import 'component/setting_drawer.dart';
 import 'detail.dart';
 
-const String name = 'test';
-const String? ownerIconUrl = null;
+const String fullName = 'test';
+const String avatarUrl = 'https://avatars.githubusercontent.com/u/54189261?v=4';
 const String? language = null;
 const int stargazersCount = 0;
 const int watchersCount = 1;
 const int forksCount = 2;
 const int issuesCount = 3;
 const SchemeRepository repo = SchemeRepository(
-    name: name,
-    ownerIconUrl: ownerIconUrl,
+    fullName: fullName,
+    owner: SchemeOwner(avatarUrl: avatarUrl),
     language: language,
     stargazersCount: stargazersCount,
     watchersCount: watchersCount,
     forksCount: forksCount,
     issuesCount: issuesCount
 );
-
 class Home extends StatelessWidget {
   const Home({super.key});
   @override
@@ -77,7 +77,7 @@ class Home extends StatelessWidget {
                       ),
                     ),
                   ),
-                  title: Text(item.name),
+                  title: Text(item.fullName),
                   subtitle: const Text('subtitle'),
                   trailing: const FlutterLogo(),
                 ),

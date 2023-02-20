@@ -20,12 +20,12 @@ SchemeRepository _$SchemeRepositoryFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$SchemeRepository {
-  @JsonKey(name: 'name')
-  String get name => throw _privateConstructorUsedError;
-  @JsonKey(name: 'avatar_url')
-  String? get ownerIconUrl => throw _privateConstructorUsedError;
+  @JsonKey(name: 'full_name')
+  String get fullName => throw _privateConstructorUsedError;
   @JsonKey(name: 'language')
   String? get language => throw _privateConstructorUsedError;
+  @JsonKey(name: 'owner')
+  SchemeOwner get owner => throw _privateConstructorUsedError;
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount => throw _privateConstructorUsedError;
   @JsonKey(name: 'watchers_count')
@@ -48,13 +48,15 @@ abstract class $SchemeRepositoryCopyWith<$Res> {
       _$SchemeRepositoryCopyWithImpl<$Res, SchemeRepository>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'avatar_url') String? ownerIconUrl,
+      {@JsonKey(name: 'full_name') String fullName,
       @JsonKey(name: 'language') String? language,
+      @JsonKey(name: 'owner') SchemeOwner owner,
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       @JsonKey(name: 'forks_count') int forksCount,
       @JsonKey(name: 'open_issues_count') int issuesCount});
+
+  $SchemeOwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -70,27 +72,27 @@ class _$SchemeRepositoryCopyWithImpl<$Res, $Val extends SchemeRepository>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? ownerIconUrl = freezed,
+    Object? fullName = null,
     Object? language = freezed,
+    Object? owner = null,
     Object? stargazersCount = null,
     Object? watchersCount = null,
     Object? forksCount = null,
     Object? issuesCount = null,
   }) {
     return _then(_value.copyWith(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerIconUrl: freezed == ownerIconUrl
-          ? _value.ownerIconUrl
-          : ownerIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
+      owner: null == owner
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as SchemeOwner,
       stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
@@ -109,6 +111,14 @@ class _$SchemeRepositoryCopyWithImpl<$Res, $Val extends SchemeRepository>
               as int,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SchemeOwnerCopyWith<$Res> get owner {
+    return $SchemeOwnerCopyWith<$Res>(_value.owner, (value) {
+      return _then(_value.copyWith(owner: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -120,13 +130,16 @@ abstract class _$$_SchemeRepositoryCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'name') String name,
-      @JsonKey(name: 'avatar_url') String? ownerIconUrl,
+      {@JsonKey(name: 'full_name') String fullName,
       @JsonKey(name: 'language') String? language,
+      @JsonKey(name: 'owner') SchemeOwner owner,
       @JsonKey(name: 'stargazers_count') int stargazersCount,
       @JsonKey(name: 'watchers_count') int watchersCount,
       @JsonKey(name: 'forks_count') int forksCount,
       @JsonKey(name: 'open_issues_count') int issuesCount});
+
+  @override
+  $SchemeOwnerCopyWith<$Res> get owner;
 }
 
 /// @nodoc
@@ -140,27 +153,27 @@ class __$$_SchemeRepositoryCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? name = null,
-    Object? ownerIconUrl = freezed,
+    Object? fullName = null,
     Object? language = freezed,
+    Object? owner = null,
     Object? stargazersCount = null,
     Object? watchersCount = null,
     Object? forksCount = null,
     Object? issuesCount = null,
   }) {
     return _then(_$_SchemeRepository(
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
+      fullName: null == fullName
+          ? _value.fullName
+          : fullName // ignore: cast_nullable_to_non_nullable
               as String,
-      ownerIconUrl: freezed == ownerIconUrl
-          ? _value.ownerIconUrl
-          : ownerIconUrl // ignore: cast_nullable_to_non_nullable
-              as String?,
       language: freezed == language
           ? _value.language
           : language // ignore: cast_nullable_to_non_nullable
               as String?,
+      owner: null == owner
+          ? _value.owner
+          : owner // ignore: cast_nullable_to_non_nullable
+              as SchemeOwner,
       stargazersCount: null == stargazersCount
           ? _value.stargazersCount
           : stargazersCount // ignore: cast_nullable_to_non_nullable
@@ -185,9 +198,9 @@ class __$$_SchemeRepositoryCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SchemeRepository implements _SchemeRepository {
   const _$_SchemeRepository(
-      {@JsonKey(name: 'name') required this.name,
-      @JsonKey(name: 'avatar_url') required this.ownerIconUrl,
+      {@JsonKey(name: 'full_name') required this.fullName,
       @JsonKey(name: 'language') required this.language,
+      @JsonKey(name: 'owner') required this.owner,
       @JsonKey(name: 'stargazers_count') required this.stargazersCount,
       @JsonKey(name: 'watchers_count') required this.watchersCount,
       @JsonKey(name: 'forks_count') required this.forksCount,
@@ -197,14 +210,14 @@ class _$_SchemeRepository implements _SchemeRepository {
       _$$_SchemeRepositoryFromJson(json);
 
   @override
-  @JsonKey(name: 'name')
-  final String name;
-  @override
-  @JsonKey(name: 'avatar_url')
-  final String? ownerIconUrl;
+  @JsonKey(name: 'full_name')
+  final String fullName;
   @override
   @JsonKey(name: 'language')
   final String? language;
+  @override
+  @JsonKey(name: 'owner')
+  final SchemeOwner owner;
   @override
   @JsonKey(name: 'stargazers_count')
   final int stargazersCount;
@@ -220,7 +233,7 @@ class _$_SchemeRepository implements _SchemeRepository {
 
   @override
   String toString() {
-    return 'SchemeRepository(name: $name, ownerIconUrl: $ownerIconUrl, language: $language, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, issuesCount: $issuesCount)';
+    return 'SchemeRepository(fullName: $fullName, language: $language, owner: $owner, stargazersCount: $stargazersCount, watchersCount: $watchersCount, forksCount: $forksCount, issuesCount: $issuesCount)';
   }
 
   @override
@@ -228,11 +241,11 @@ class _$_SchemeRepository implements _SchemeRepository {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SchemeRepository &&
-            (identical(other.name, name) || other.name == name) &&
-            (identical(other.ownerIconUrl, ownerIconUrl) ||
-                other.ownerIconUrl == ownerIconUrl) &&
+            (identical(other.fullName, fullName) ||
+                other.fullName == fullName) &&
             (identical(other.language, language) ||
                 other.language == language) &&
+            (identical(other.owner, owner) || other.owner == owner) &&
             (identical(other.stargazersCount, stargazersCount) ||
                 other.stargazersCount == stargazersCount) &&
             (identical(other.watchersCount, watchersCount) ||
@@ -245,7 +258,7 @@ class _$_SchemeRepository implements _SchemeRepository {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, name, ownerIconUrl, language,
+  int get hashCode => Object.hash(runtimeType, fullName, language, owner,
       stargazersCount, watchersCount, forksCount, issuesCount);
 
   @JsonKey(ignore: true)
@@ -264,9 +277,9 @@ class _$_SchemeRepository implements _SchemeRepository {
 
 abstract class _SchemeRepository implements SchemeRepository {
   const factory _SchemeRepository(
-          {@JsonKey(name: 'name') required final String name,
-          @JsonKey(name: 'avatar_url') required final String? ownerIconUrl,
+          {@JsonKey(name: 'full_name') required final String fullName,
           @JsonKey(name: 'language') required final String? language,
+          @JsonKey(name: 'owner') required final SchemeOwner owner,
           @JsonKey(name: 'stargazers_count') required final int stargazersCount,
           @JsonKey(name: 'watchers_count') required final int watchersCount,
           @JsonKey(name: 'forks_count') required final int forksCount,
@@ -277,14 +290,14 @@ abstract class _SchemeRepository implements SchemeRepository {
       _$_SchemeRepository.fromJson;
 
   @override
-  @JsonKey(name: 'name')
-  String get name;
-  @override
-  @JsonKey(name: 'avatar_url')
-  String? get ownerIconUrl;
+  @JsonKey(name: 'full_name')
+  String get fullName;
   @override
   @JsonKey(name: 'language')
   String? get language;
+  @override
+  @JsonKey(name: 'owner')
+  SchemeOwner get owner;
   @override
   @JsonKey(name: 'stargazers_count')
   int get stargazersCount;
