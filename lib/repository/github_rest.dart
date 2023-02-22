@@ -14,7 +14,7 @@ class GithubRest {
       'https://api.github.com/search/issues?q=';
   static const String opSort = '&sort=stars';
   static const String opOrder = '&order=desc';
-  static const String opPerPage = '&per_page=10';
+  static const String opPerPage = '&per_page=15';
   static const String opPage = '&page=';
   static const String optionMyRepo = ' user:shivakibot';
   static final _repo = GithubRest._internal();
