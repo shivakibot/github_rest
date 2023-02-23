@@ -70,7 +70,7 @@ class GithubRest {
   void _checkStatusCode(http.Response res) {
     /// 200 以外のケースはエラーハンドリング対応とする
     if (res.statusCode != 200) {
-      throw GithubServerError('${res.statusCode}');
+      throw GithubServerError('status Code: ${res.statusCode}');
     }
   }
 }

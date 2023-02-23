@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:github_rest/view/extension/current_theme.dart';
+
+import '../../viewModel/common.dart';
 
 class SettingDrawer extends StatelessWidget {
   const SettingDrawer({super.key});
@@ -11,11 +15,10 @@ class SettingDrawer extends StatelessWidget {
         children: [
           const DrawerHeader(
               child: ListTile(
-                key: ValueKey('drawer header'),
-                title: Text('Github'),
-                subtitle: Text('REST API app'),
-              )
-          ),
+            key: ValueKey('drawer header'),
+            title: Text('Github'),
+            subtitle: Text('REST API app'),
+          )),
           _SwitchThemeTile(),
           ListTile(
             key: const ValueKey('etc'),
@@ -35,32 +38,41 @@ class SettingDrawer extends StatelessWidget {
   }
 }
 
-class _SwitchThemeTile extends StatefulWidget{
+class _SwitchThemeTile extends ConsumerStatefulWidget {
   @override
-  State<StatefulWidget> createState() {
+  ConsumerState<ConsumerStatefulWidget> createState() {
     return _SwitchThemeTileState();
   }
-
 }
 
-class _SwitchThemeTileState extends State<_SwitchThemeTile>{
-  bool theme = true;
+class _SwitchThemeTileState extends ConsumerState<_SwitchThemeTile> {
   @override
   Widget build(BuildContext context) {
+    final appTheme = ref.watch(appThemeProvider);
+    final appThemeState = ref.watch(appThemeProvider.notifier);
     return ListTile(
       key: const ValueKey('setting theme'),
-      // leading: Icon(Icons.light_mode),
-      onTap: () => _switch(theme),
+      onTap: () {
+        debugPrint('context.isDarkMode ${context.isDarkMode}');
+        _adoptedDarkMode(context, appTheme)
+            ? appThemeState.state = ThemeMode.light
+            : appThemeState.state = ThemeMode.dark;
+      },
       leading: AnimatedSwitcher(
         duration: const Duration(seconds: 2),
-        child: theme ? const Icon(Icons.light_mode) :  const Icon(Icons.dark_mode),
+        child: _adoptedDarkMode(context, appTheme)
+            ? const Icon(Icons.dark_mode)
+            : const Icon(Icons.light_mode),
       ),
       title: const Text('テーマ変更'),
     );
   }
-  void _switch(bool tap){
-    setState(() {
-      theme = !tap;
-    });
+
+  bool _adoptedDarkMode(BuildContext context,ThemeMode appTheme){
+    /// 端末のテーマモード(ThemeMode.system、不変)が darkかどうか
+    if(appTheme == ThemeMode.system){
+      return context.isDarkMode;
+    }
+    return appTheme == ThemeMode.dark;
   }
 }

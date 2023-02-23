@@ -19,13 +19,15 @@ class HomeState with _$HomeState {
 
 final repositoryProvider = Provider<GithubRest>((ref) => GithubRest());
 final homeStateNotifier = StateNotifierProvider<HomeStateNotifier, AsyncValue<List<SchemeRepository>>>((ref) {
-  return HomeStateNotifier(ref, ref.watch(repositoryProvider));
+  const initValue = AsyncLoading<List<SchemeRepository>>();
+  return HomeStateNotifier(ref, ref.watch(repositoryProvider), initValue);
 });
 
 class HomeStateNotifier extends StateNotifier<AsyncValue<List<SchemeRepository>>> {
   final Ref ref;
   final GithubRest repo;
-  HomeStateNotifier(this.ref, this.repo):super(const AsyncLoading<List<SchemeRepository>>());
+  final AsyncValue<List<SchemeRepository>> initValue;
+  HomeStateNotifier(this.ref, this.repo, this.initValue):super(initValue);
 
   int _page = 1;
   /// 検索窓の onFieldSubmitted でコール<br>
