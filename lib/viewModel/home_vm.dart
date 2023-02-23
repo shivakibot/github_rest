@@ -40,7 +40,8 @@ class HomeStateNotifier extends StateNotifier<AsyncValue<List<SchemeRepository>>
   }
 
   /// スクロールで末端に到達した場合にコール<br>
-  /// REST API を次のページ指定(increment page)として実行
+  /// REST API を次のページ指定(increment page)として実行<br>
+  /// ローディング中にコールされた場合、処理を終了する
   Future<void> addPage() async{
     if (state == const AsyncLoading<List<SchemeRepository>>().copyWithPrevious(state)) {
       return;
