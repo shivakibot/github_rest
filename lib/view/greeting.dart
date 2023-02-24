@@ -29,7 +29,7 @@ class Greeting extends StatelessWidget {
                 width: MediaQuery.of(context).size.width * 3 / 4,
                 child: const Text(
                   'Github のリポジトリを検索するアプリです\n'
-                      'トップの検索バーから検索してみましょう',
+                  'トップの検索バーから検索してみましょう',
                   key: ValueKey('greetingText'),
                   textAlign: TextAlign.center,
                 ),
@@ -40,5 +40,4 @@ class Greeting extends StatelessWidget {
       ),
     );
   }
-
 }

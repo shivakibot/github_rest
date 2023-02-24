@@ -74,7 +74,9 @@ class HomeState extends ConsumerState<Home> {
                             child: SizedBox(
                               width: 30,
                               height: 30,
-                              child: CircularProgressIndicator(),
+                              child: CircularProgressIndicator(
+                                key: ValueKey('guard'),
+                              ),
                             ),
                           )
                         );
@@ -82,6 +84,7 @@ class HomeState extends ConsumerState<Home> {
                       final item = repositories[index];
                       return Card(
                         child: ListTile(
+                          key: ValueKey('item $index'),
                           onTap: () {
                             /// GestureDetectorの子 widgetにある onTap()は優先されるはずなので、
                             /// 検索窓編集中にカードを触るケースについても unfocus()するよう設定
@@ -98,7 +101,8 @@ class HomeState extends ConsumerState<Home> {
                             backgroundColor: Theme.of(context).primaryColor,
                             child: CachedNetworkImage(
                               imageUrl: item.owner.avatarUrl,
-                              placeholder: (context, url) => const CircularProgressIndicator(),
+                              placeholder: (context, url) => const CircularProgressIndicator(
+                              ),
                               errorWidget: (context, url, error) => const Icon(Icons.error_outline),
                             ),
                           ),

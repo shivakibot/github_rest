@@ -47,14 +47,14 @@ void main() {
       expect(res.items, []);
     });
     // API仕様通りの動作(perPage 及び page option)を確認し、中身のデータは精査しない
-    test('normally search page 1 and perPage 10', () async {
+    test('normally search page 1 and perPage 15', () async {
       final repo = GithubRest();
       final res01 = await _execAllowFail(repo, str01, first);
       final res02 = await _execAllowFail(repo, str01, seconds);
       debugPrint(res01.items.toString());
       debugPrint(res02.items.toString());
-      expect(res01.items.length, 10);
-      expect(res02.items.length, 10);
+      expect(res01.items.length, 15);
+      expect(res02.items.length, 15);
       bool notMatch = res01.items[0].fullName != res02.items[0].fullName;
       expect(notMatch, true);
     });

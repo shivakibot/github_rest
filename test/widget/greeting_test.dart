@@ -13,9 +13,9 @@ void main() {
   });
 }
 
-// Future<void> integrate(WidgetTester tester)async{
-//   await _widgetTest(tester);
-// }
+Future<void> integrate(WidgetTester tester) async{
+  await _widgetTest(tester);
+}
 
 Future<void> _widgetTest(WidgetTester tester) async {
   // search Action bar
