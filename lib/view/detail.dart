@@ -6,7 +6,7 @@ import '../model/schema_repository.dart';
 class DetailBottomSheet extends StatelessWidget {
   final SchemeRepository repo;
   const DetailBottomSheet({required this.repo, super.key});
-
+  static final formatter = NumberFormat("#,###");
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -69,7 +69,6 @@ class DetailBottomSheet extends StatelessWidget {
   }
 
   static String _formatCount(int count){
-    final formatter = NumberFormat("#,###");
     return formatter.format(count);
   }
 }

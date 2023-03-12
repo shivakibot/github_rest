@@ -59,10 +59,16 @@ class _SwitchThemeTileState extends ConsumerState<_SwitchThemeTile> {
             : appThemeState.state = ThemeMode.dark;
       },
       leading: AnimatedSwitcher(
-        duration: const Duration(seconds: 2),
+        duration: const Duration(milliseconds: 400),
         child: _adoptedDarkMode(context, appTheme)
-            ? const Icon(Icons.dark_mode)
-            : const Icon(Icons.light_mode),
+            ? const Icon(
+            key: ValueKey('dark_mode'),
+            Icons.dark_mode,
+        )
+            : const Icon(
+            key: ValueKey('light_mode'),
+            Icons.light_mode,
+        ),
       ),
       title: const Text('テーマ変更'),
     );

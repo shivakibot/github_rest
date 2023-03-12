@@ -4,7 +4,9 @@ import 'package:github_rest/viewModel/home_vm.dart';
 import 'package:github_rest/view/component/route.dart';
 import 'package:github_rest/viewModel/common.dart';
 
+
 class SearchActionBar extends ConsumerWidget implements PreferredSizeWidget {
+/// TODO コンポーネントなのに親を意識しているのはよくない
   final bool fromGreeting;
 
   const SearchActionBar({required this.fromGreeting, super.key});
@@ -14,7 +16,6 @@ class SearchActionBar extends ConsumerWidget implements PreferredSizeWidget {
     final formKey = fromGreeting
         ? const GlobalObjectKey<FormState>('fromGreeting')
         : const GlobalObjectKey<FormState>('fromHome');
-    final homeVM = ref.watch(homeStateNotifier.notifier);
     final search = ref.watch(searchProvider);
     return AppBar(
       key: const ValueKey('searchActionBar'),
@@ -49,6 +50,7 @@ class SearchActionBar extends ConsumerWidget implements PreferredSizeWidget {
           onFieldSubmitted: (value) {
             if (formKey.currentState!.validate()) {
               final searchState = ref.read(searchProvider.notifier);
+              final homeVM = ref.read(homeStateNotifier.notifier);
               searchState.state = value;
               homeVM.searchRepository();
               if (fromGreeting) {
