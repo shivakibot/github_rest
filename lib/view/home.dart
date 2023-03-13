@@ -16,6 +16,7 @@ class Home extends ConsumerStatefulWidget{
 }
 
 class HomeState extends ConsumerState<Home> {
+  final FocusNode _focusNode = FocusNode();
   late ScrollController _scrollController;
   @override
   void initState() {
@@ -30,21 +31,26 @@ class HomeState extends ConsumerState<Home> {
   }
 
   @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     /// textFieldの focusを外しやすくする為に
     /// textField以外のところをタップする unfocus()するよう設定
-    final FocusNode focusNode = FocusNode();
     final asyncValue = ref.watch(homeStateNotifier);
     return Focus(
-      focusNode: focusNode,
+      focusNode: _focusNode,
         child: GestureDetector(
-          onTap: () => focusNode.unfocus(),
+          onTap: () => _focusNode.unfocus(),
           child: SafeArea(
             child: Scaffold(
               key: const ValueKey('home'),
               drawer: const SettingDrawer(),
               appBar: const SearchActionBar(
-                fromGreeting: false,
+                formKey: GlobalObjectKey<FormState>('fromHome'),
               ),
               body: asyncValue.when(
                 data: (repositories) {
@@ -88,7 +94,7 @@ class HomeState extends ConsumerState<Home> {
                           onTap: () {
                             /// GestureDetectorの子 widgetにある onTap()は優先されるはずなので、
                             /// 検索窓編集中にカードを触るケースについても unfocus()するよう設定
-                            focusNode.unfocus();
+                            _focusNode.unfocus();
                             showModalBottomSheet(
                               context: context,
                               isScrollControlled: true,

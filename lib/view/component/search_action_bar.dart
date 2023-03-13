@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:github_rest/viewModel/home_vm.dart';
-import 'package:github_rest/view/component/route.dart';
 import 'package:github_rest/viewModel/common.dart';
 
-
 class SearchActionBar extends ConsumerWidget implements PreferredSizeWidget {
-/// TODO コンポーネントなのに親を意識しているのはよくない
-  final bool fromGreeting;
+  final GlobalObjectKey<FormState> formKey;
+  final String route;
+  final bool auto;
 
-  const SearchActionBar({required this.fromGreeting, super.key});
+  const SearchActionBar(
+      {super.key, required this.formKey, this.route = '', this.auto = false});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final formKey = fromGreeting
-        ? const GlobalObjectKey<FormState>('fromGreeting')
-        : const GlobalObjectKey<FormState>('fromHome');
     final search = ref.watch(searchProvider);
     return AppBar(
       key: const ValueKey('searchActionBar'),
@@ -27,7 +24,7 @@ class SearchActionBar extends ConsumerWidget implements PreferredSizeWidget {
           key: const ValueKey('search form'),
           // maxLength: 128,
           maxLines: 1,
-          autofocus: fromGreeting,
+          autofocus: auto,
           initialValue: search,
           textInputAction: TextInputAction.search,
           decoration: const InputDecoration(
@@ -53,9 +50,9 @@ class SearchActionBar extends ConsumerWidget implements PreferredSizeWidget {
               final homeVM = ref.read(homeStateNotifier.notifier);
               searchState.state = value;
               homeVM.searchRepository();
-              if (fromGreeting) {
-                /// Greeting 画面からの実行は Home 画面に遷移させる
-                Navigator.of(context).pushReplacementNamed(AppRoute.home.path);
+              if (route.isNotEmpty) {
+                /// 遷移させる
+                Navigator.of(context).pushReplacementNamed(route);
               }
             }
           },
